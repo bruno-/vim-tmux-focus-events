@@ -32,7 +32,10 @@ function! tmux_focus_events#focus_gained()
     augroup focus_gained_checktime
       au!
       " perform checktime ASAP when outside cmd line
-      au * * call <SID>delayed_checktime()
+	  "This is buggy:
+      "au * * call <SID>delayed_checktime()
+	  "Replacement:
+      au CmdLineLeave * call <SID>delayed_checktime()
     augroup END
   else
     silent checktime
